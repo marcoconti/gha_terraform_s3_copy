@@ -1,0 +1,51 @@
+name: 'Terraform'
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRECT_ACCESS_KEY_ID }}
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    env:
+      TF_WORKING_DIR: 'gha_tf_s3'
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ env.TF_WORKING_DIR }}
+
+    steps:
+    
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Teste Mensagem
+      run: echo Teste Marco Conti - v2
+    
+    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+      # with:
+        # cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Terraform Init
+      run: terraform init -backend=true -backend-config="config/prod/backend.hcl"
+
+    # Formata os arquiv terraform
+    - name: Terraform format
+      run: terraform fmt
+    
+    - name: Executa o Terraform Plan
+      run: terraform plan -var-file="config/prod/terraform.tfvars" -out="tfplan.out" -lock="false"
+
+    - name: Executa o apply para o plan criado anteriomente
+      run: terraform apply "tfplan.out"

@@ -1,0 +1,60 @@
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create[0m
+
+Terraform will perform the following actions:
+
+[1m  # aws_s3_bucket.treino_terraform_bucket[0m will be created
+[0m  [32m+[0m[0m resource "aws_s3_bucket" "treino_terraform_bucket" {
+      [32m+[0m[0m acceleration_status         = (known after apply)
+      [32m+[0m[0m acl                         = (known after apply)
+      [32m+[0m[0m arn                         = (known after apply)
+      [32m+[0m[0m bucket                      = "gha-terraform-bucket-mac-dev-20231208-v3"
+      [32m+[0m[0m bucket_domain_name          = (known after apply)
+      [32m+[0m[0m bucket_prefix               = (known after apply)
+      [32m+[0m[0m bucket_regional_domain_name = (known after apply)
+      [32m+[0m[0m force_destroy               = false
+      [32m+[0m[0m hosted_zone_id              = (known after apply)
+      [32m+[0m[0m id                          = (known after apply)
+      [32m+[0m[0m object_lock_enabled         = (known after apply)
+      [32m+[0m[0m policy                      = (known after apply)
+      [32m+[0m[0m region                      = (known after apply)
+      [32m+[0m[0m request_payer               = (known after apply)
+      [32m+[0m[0m tags                        = {
+          [32m+[0m[0m "ManagedBy" = "Terraform"
+          [32m+[0m[0m "Name"      = "Ubuntu"
+          [32m+[0m[0m "Owner"     = "Marco Conti"
+          [32m+[0m[0m "Project"   = "Criar Bucket s3 tf gha"
+          [32m+[0m[0m "Update_at" = "2023-12-11"
+        }
+      [32m+[0m[0m tags_all                    = {
+          [32m+[0m[0m "ManagedBy" = "Terraform"
+          [32m+[0m[0m "Name"      = "Ubuntu"
+          [32m+[0m[0m "Owner"     = "Marco Conti"
+          [32m+[0m[0m "Project"   = "Criar Bucket s3 tf gha"
+          [32m+[0m[0m "Update_at" = "2023-12-11"
+        }
+      [32m+[0m[0m website_domain              = (known after apply)
+      [32m+[0m[0m website_endpoint            = (known after apply)
+    }
+
+[1mPlan:[0m 1 to add, 0 to change, 0 to destroy.
+[0m[33m╷[0m[0m
+[33m│[0m [0m[1m[33mWarning: [0m[0m[1mValue for undeclared variable[0m
+[33m│[0m [0m
+[33m│[0m [0m[0mThe root module does not declare a variable named "teste_action" but a
+[33m│[0m [0mvalue was found in file "config/local/terraform.tfvars". If you meant to
+[33m│[0m [0muse this value, add a "variable" block to the configuration.
+[33m│[0m [0m
+[33m│[0m [0mTo silence these warnings, use TF_VAR_... environment variables to provide
+[33m│[0m [0mcertain "global" settings to all configurations in your organization. To
+[33m│[0m [0mreduce the verbosity of these warnings, use the -compact-warnings option.
+[33m╵[0m[0m
+[90m
+─────────────────────────────────────────────────────────────────────────────[0m
+
+Saved the plan to: tfplan.out
+
+To perform exactly these actions, run the following command to apply:
+    terraform apply "tfplan.out"
